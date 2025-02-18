@@ -6,5 +6,11 @@ API hosted RL environments for multi-turn/multi-agent interaction with LLMs.
 pip install rl-environments
 ```
 
+## Integration
+These environments can be plugged into:
+
+- [verl](https://github.com/volcengine/verl) (original intent), see `examples/smallest_box_verl.py`.
+- [trl](https://github.com/huggingface/trl) via [verifiers](https://github.com/willccbb/verifiers), see `examples/smallest_box_trl.py`.
+
 ## Contact
-**Contact:** For inquiries, please reach out at [corefranciscopark@g.harvard.edu](mailto:corefranciscopark@g.harvard.edu)
+For inquiries, please reach out at [corefranciscopark@g.harvard.edu](mailto:corefranciscopark@g.harvard.edu).

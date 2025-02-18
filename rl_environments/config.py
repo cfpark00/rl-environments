@@ -1,5 +1,6 @@
 import omegaconf
 
+
 def load_config(config_path: str, validate: bool = True) -> dict:
     """
     Load a yaml config file from a given path.
@@ -13,6 +14,7 @@ def load_config(config_path: str, validate: bool = True) -> dict:
     """
     config = omegaconf.OmegaConf.load(config_path)
     return config
+
 
 def validate_config(config):
     """
