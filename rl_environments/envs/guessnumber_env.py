@@ -26,7 +26,7 @@ class GuessNumberEnv(BaseEnv):
         '- "Higher!" if their number is higher than your guess.\n'
         '- "Lower!" if their number is lower than your guess.\n'
         '- "Correct!" if your guess is correct.\n'
-        "Respond in the following JSON format:\n" + format_description
+        "Respond in the following JSON format:\n"+ format_description
     )
     format_error_prompt = "Please stick to the format:\n" + format_description.format()
     default_params = {
@@ -45,23 +45,31 @@ class GuessNumberEnv(BaseEnv):
             n_guesses=self.params["n_guesses"],
         )
 
-    def get_dataset(self, n_rows=128):
+    def get_dataset(self, n_rows=64):
         data = []
         for idx in range(n_rows):
             datum = self.get_data_sample()
             data.append(datum)
         return data
 
-    def get_data_sample(self):
-        min_val = self.params["min_val"]
-        max_val = self.params["max_val"]
-        n_guesses = self.params["n_guesses"]
+    def get_data_sample(self,**kwargs):
+        min_val=kwargs.get("min_val",self.params["min_val"])
+        max_val=kwargs.get("max_val",self.params["max_val"])
+        n_guesses=kwargs.get("n_guesses",self.params["n_guesses"])
+        number = kwargs.get("number",np.random.randint(min_val, max_val + 1))
 
-        number = np.random.randint(min_val, max_val + 1)
+        ### belows is deterministic
+        env_params = {
+            "number": number,
+            "n_guesses": n_guesses,
+            "min_val": min_val,
+            "max_val": max_val,
+        }
         messages = [
             {
                 "role": "system",
                 "content": self.system_prompt,
+                "env_params": env_params,
             },
             {
                 "role": "user",
@@ -69,24 +77,13 @@ class GuessNumberEnv(BaseEnv):
                 "done": False,
             },
         ]
-        hidden_params = {
-            "number": number,
-            "n_guesses": n_guesses,
-            "min_val": min_val,
-            "max_val": max_val,
-        }
-        data = {
-            "messages": messages,
-            "hidden_params": hidden_params,
-        }
-        return data
+        return {"messages": messages}
 
     @staticmethod
-    def get_env_response(messages, hidden_params):
-        number = hidden_params["number"]
-        n_guesses = hidden_params["n_guesses"]
-        min_val = hidden_params.get("min_val", 1)
-        max_val = hidden_params.get("max_val", 100)
+    def get_env_response(messages):
+        env_params = messages[0]["env_params"]
+        number = env_params["number"]
+        n_guesses = env_params["n_guesses"]#intentionally not setting defaults as these are needed to be passed at inference time
 
         last_assistant_message = utils.get_last_assistant_message(messages)
         last_content = last_assistant_message["content"]
@@ -121,9 +118,10 @@ class GuessNumberEnv(BaseEnv):
         return {"role": "user", "content": feedback_message, "done": False}
 
     @staticmethod
-    def get_reward(messages, hidden_params):
-        number = hidden_params["number"]
-        n_guesses = hidden_params["n_guesses"]
+    def get_reward(messages):
+        env_params = messages[0]["env_params"]
+        number = env_params["number"]
+        n_guesses = env_params["n_guesses"]
 
         reward = 0.0
         for message in messages:

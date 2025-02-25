@@ -1,0 +1,722 @@
+[
+  {
+    "user_prompt": "I need you to select one option from several.",
+    "system_prompt": "Provide your internal reasoning and then output your selected option as a JSON object. Please respond following this template:\n<think>Consider the possibilities</think><action>{\"choice\": (int)}</action>",
+    "completion": "<think>I weighed the available options based on their benefits and potential drawbacks, and determined that option 5 offers the most balanced outcome.</think><action>{\"choice\": 5}</action>",
+    "json_str": "{\"choice\": 5}"
+  },
+  {
+    "user_prompt": "After analyzing the problem, please assign a score to your answer and include your reasoning.",
+    "system_prompt": "Please answer in the following manner:\n<think>Explain your analysis here</think><action>{\"score\": (float)}</action>",
+    "completion": "<think>After reviewing all aspects of the solution, I believe a score of 7.5 reflects moderate confidence while acknowledging areas for improvement.</think><action>{\"score\": 7.5}</action>",
+    "json_str": "{\"score\": 7.5}"
+  },
+  {
+    "user_prompt": "Given three options, choose one for each category.",
+    "system_prompt": "Provide reasoning and output three integers in an array under 'options'. Kindly reply with your reasoning and then follow this structure:\n<think>Your reasoning details</think><action>{\"options\": [(int), (int), (int)]}</action>",
+    "completion": "<think>I evaluated the three distinct categories and selected the integers that best represent a balanced choice across each: 1 for the first, 2 for the second, and 3 for the third.</think><action>{\"options\": [1, 2, 3]}</action>",
+    "json_str": "{\"options\": [1, 2, 3]}"
+  },
+  {
+    "user_prompt": "Based on the evaluation, decide on an option and your confidence level.",
+    "system_prompt": "Include your thought process and then output a JSON with your decision. Please respond with your internal analysis and output in the following format:\n<think>Detail your reasoning</think><action>{\"decision\": {\"option\": (int), \"confidence\": (float)}}</action>",
+    "completion": "<think>After a thorough evaluation of all factors, I selected option 2 and feel 85% confident in this decision due to its strong alignment with the criteria.</think><action>{\"decision\": {\"option\": 2, \"confidence\": 0.85}}</action>",
+    "json_str": "{\"decision\": {\"option\": 2, \"confidence\": 0.85}}"
+  },
+  {
+    "user_prompt": "Evaluate and generate two numerical values representing key metrics.",
+    "system_prompt": "Please provide your reasoning and output the two floats in JSON. Kindly share your analysis then output following the structure:\n<think>Share your insights</think><action>{\"values\": [(float), (float)]}</action>",
+    "completion": "<think>I identified two key metrics that are critical for the analysis. The values 3.14 and 2.71 best capture the underlying ratios observed in the data.</think><action>{\"values\": [3.14, 2.71]}</action>",
+    "json_str": "{\"values\": [3.14, 2.71]}"
+  },
+  {
+    "user_prompt": "Provide a 2x2 matrix after considering the layout.",
+    "system_prompt": "Explain your thought process and then output a JSON matrix of integers. After your internal analysis, please output your answer in this format:\n<think>Outline your reasoning</think><action>{\"matrix\": [[(int), (int)], [(int), (int)]]}</action>",
+    "completion": "<think>I opted for the simplest non-trivial layout, selecting the 2x2 identity matrix to clearly demonstrate the concept.</think><action>{\"matrix\": [[1, 0], [0, 1]]}</action>",
+    "json_str": "{\"matrix\": [[1, 0], [0, 1]]}"
+  },
+  {
+    "user_prompt": "Conclude your evaluation by providing an option, a comment, and a metadata precision value.",
+    "system_prompt": "Include your thought process. Please reply with your internal reasoning and then format your answer as follows:\n<think>Discuss your thought process</think><action>{\"choice\": (int), \"comment\": \"string\", \"metadata\": {\"precision\": (float)}}</action>",
+    "completion": "<think>After careful consideration, I chose option 7 because it best meets the requirements. The high precision value reflects my strong confidence in this selection.</think><action>{\"choice\": 7, \"comment\": \"Selected based on careful analysis\", \"metadata\": {\"precision\": 0.95}}</action>",
+    "json_str": "{\"choice\": 7, \"comment\": \"Selected based on careful analysis\", \"metadata\": {\"precision\": 0.95}}"
+  },
+  {
+    "user_prompt": "Review the items and output two objects each with an id and a value.",
+    "system_prompt": "Provide your reasoning first. Offer your internal analysis then format your answer like this:\n<think>State your reasoning</think><action>{\"items\": [{\"id\": (int), \"value\": (float)}, {\"id\": (int), \"value\": (float)}]}</action>",
+    "completion": "<think>I reviewed the available items and identified two that were most significant. I assigned IDs 101 and 102 with values that reflect their respective impacts.</think><action>{\"items\": [{\"id\": 101, \"value\": 1.23}, {\"id\": 102, \"value\": 4.56}]}</action>",
+    "json_str": "{\"items\": [{\"id\": 101, \"value\": 1.23}, {\"id\": 102, \"value\": 4.56}]}"
+  },
+  {
+    "user_prompt": "After careful consideration, indicate whether your decision is verified and your chosen option.",
+    "system_prompt": "Provide your internal reasoning. Kindly detail your thought process and output in the format below:\n<think>Express your reasoning</think><action>{\"verified\": (bool), \"choice\": (int)}</action>",
+    "completion": "<think>Upon thorough review, I verified the decision-making process and confirmed that option 4 is the best choice based on the criteria evaluated.</think><action>{\"verified\": true, \"choice\": 4}</action>",
+    "json_str": "{\"verified\": true, \"choice\": 4}"
+  },
+  {
+    "user_prompt": "Make your final assessment and output a result with a primary integer and a list of secondary items.",
+    "system_prompt": "Explain your analysis first. Please provide your internal reasoning followed by your result formatted as follows:\n<think>Share your analysis</think><action>{\"result\": {\"primary\": (int), \"secondary\": [{\"id\": (int), \"score\": (float)}]}}</action>",
+    "completion": "<think>In my final assessment, I assigned a primary score of 10 and included a secondary item with an ID of 1 and a score of 0.99 to highlight an outstanding aspect of the evaluation.</think><action>{\"result\": {\"primary\": 10, \"secondary\": [{\"id\": 1, \"score\": 0.99}]}}</action>",
+    "json_str": "{\"result\": {\"primary\": 10, \"secondary\": [{\"id\": 1, \"score\": 0.99}]}}"
+  },
+  {
+    "user_prompt": "Identify your preferred fruit and rate its taste on a scale of 1 to 10.",
+    "system_prompt": "Include your internal analysis and then output the result in the following format:\n<think>Your analysis here</think><action>{\"favorite_fruit\": \"(string)\", \"taste_rank\": (int)}</action>",
+    "completion": "<think>I considered several fruits and chose apple for its crisp and refreshing taste.</think><action>{\"favorite_fruit\": \"apple\", \"taste_rank\": 8}</action>",
+    "json_str": "{\"favorite_fruit\": \"apple\", \"taste_rank\": 8}"
+  },
+  {
+    "user_prompt": "Analyze the strengths of different programming languages and select your top three.",
+    "system_prompt": "Include your internal reasoning and output in the following structure:\n<think>Your reasoning analysis</think><action>{\"top_languages\": [(string), (string), (string)]}</action>",
+    "completion": "<think>I evaluated community support, performance, and versatility, leading me to choose Python, JavaScript, and C++.</think><action>{\"top_languages\": [\"Python\", \"JavaScript\", \"C++\"]}</action>",
+    "json_str": "{\"top_languages\": [\"Python\", \"JavaScript\", \"C++\"]}"
+  },
+  {
+    "user_prompt": "Given two numbers, compute their sum and product.",
+    "system_prompt": "Share your internal calculations and then format your answer as:\n<think>Your arithmetic reasoning</think><action>{\"sum\": (int), \"product\": (int)}</action>",
+    "completion": "<think>By adding 3 and 5, I got 8, and multiplying them gives 15.</think><action>{\"sum\": 8, \"product\": 15}</action>",
+    "json_str": "{\"sum\": 8, \"product\": 15}"
+  },
+  {
+    "user_prompt": "Analyze a given year and decide whether it is a leap year.",
+    "system_prompt": "Provide your internal check logic and output in the following format:\n<think>Your leap year check</think><action>{\"year\": (int), \"is_leap\": (bool)}</action>",
+    "completion": "<think>Since 2024 is divisible by 4 and meets leap year conditions, it is a leap year.</think><action>{\"year\": 2024, \"is_leap\": true}</action>",
+    "json_str": "{\"year\": 2024, \"is_leap\": true}"
+  },
+  {
+    "user_prompt": "Choose a motivational quote and provide its author.",
+    "system_prompt": "Detail your internal selection and then output in the following format:\n<think>Your quote selection process</think><action>{\"quote\": \"(string)\", \"author\": \"(string)\"}</action>",
+    "completion": "<think>I selected a universally inspiring quote for its motivational message.</think><action>{\"quote\": \"Believe in yourself\", \"author\": \"Unknown\"}</action>",
+    "json_str": "{\"quote\": \"Believe in yourself\", \"author\": \"Unknown\"}"
+  },
+  {
+    "user_prompt": "Generate a color palette consisting of three hex codes.",
+    "system_prompt": "Explain your choice and then format your answer as follows:\n<think>Describe your color choices</think><action>{\"palette\": [\"#(hex)\", \"#(hex)\", \"#(hex)\"]}</action>",
+    "completion": "<think>I chose vibrant and contrasting colors to create an appealing palette.</think><action>{\"palette\": [\"#FF5733\", \"#33FFCE\", \"#335BFF\"]}</action>",
+    "json_str": "{\"palette\": [\"#FF5733\", \"#33FFCE\", \"#335BFF\"]}"
+  },
+  {
+    "user_prompt": "List your top three hobbies and assign each a fun score between 1 and 10.",
+    "system_prompt": "Provide your internal reasoning then output in this format:\n<think>Detail your thought process</think><action>{\"hobbies\": [{\"name\": \"(string)\", \"fun_score\": (int)}]}</action>",
+    "completion": "<think>I enjoy reading, hiking, and painting due to their creativity and relaxation benefits.</think><action>{\"hobbies\": [{\"name\": \"reading\", \"fun_score\": 9}, {\"name\": \"hiking\", \"fun_score\": 8}, {\"name\": \"painting\", \"fun_score\": 7}]}</action>",
+    "json_str": "{\"hobbies\": [{\"name\": \"reading\", \"fun_score\": 9}, {\"name\": \"hiking\", \"fun_score\": 8}, {\"name\": \"painting\", \"fun_score\": 7}]}"
+  },
+  {
+    "user_prompt": "Evaluate three tasks and rate their difficulty on a scale from 1 (easy) to 10 (hard).",
+    "system_prompt": "Include your reasoning then output your response as:\n<think>Explain your difficulty assessment</think><action>{\"tasks\": [{\"task\": \"(string)\", \"difficulty\": (int)}]}</action>",
+    "completion": "<think>I assessed each task based on required time and complexity.</think><action>{\"tasks\": [{\"task\": \"writing report\", \"difficulty\": 5}, {\"task\": \"data analysis\", \"difficulty\": 7}, {\"task\": \"debugging code\", \"difficulty\": 6}]}</action>",
+    "json_str": "{\"tasks\": [{\"task\": \"writing report\", \"difficulty\": 5}, {\"task\": \"data analysis\", \"difficulty\": 7}, {\"task\": \"debugging code\", \"difficulty\": 6}]}"
+  },
+  {
+    "user_prompt": "Based on cultural interest and scenery, recommend a travel destination and give it a rating out of 10.",
+    "system_prompt": "Share your thought process then output as:\n<think>Explain your travel recommendation</think><action>{\"destination\": \"(string)\", \"rating\": (int)}</action>",
+    "completion": "<think>I chose Paris for its rich art, history, and ambiance.</think><action>{\"destination\": \"Paris\", \"rating\": 9}</action>",
+    "json_str": "{\"destination\": \"Paris\", \"rating\": 9}"
+  },
+  {
+    "user_prompt": "Design a simple daily schedule with three time slots.",
+    "system_prompt": "Include your internal planning then output in this format:\n<think>Describe your scheduling logic</think><action>{\"schedule\": [{\"time\": \"(string)\", \"activity\": \"(string)\"}]}</action>",
+    "completion": "<think>I divided the day into morning, afternoon, and evening segments for balanced productivity.</think><action>{\"schedule\": [{\"time\": \"08:00\", \"activity\": \"exercise\"}, {\"time\": \"13:00\", \"activity\": \"work\"}, {\"time\": \"19:00\", \"activity\": \"relaxation\"}]}</action>",
+    "json_str": "{\"schedule\": [{\"time\": \"08:00\", \"activity\": \"exercise\"}, {\"time\": \"13:00\", \"activity\": \"work\"}, {\"time\": \"19:00\", \"activity\": \"relaxation\"}]}"
+  },
+  {
+    "user_prompt": "Given a numerical score, determine the corresponding grade (A, B, C, D, F).",
+    "system_prompt": "Explain your grading criteria and output as:\n<think>Explain your grading system</think><action>{\"score\": (int), \"grade\": \"(string)\"}</action>",
+    "completion": "<think>With a standard grading scale, a score of 85 qualifies as a B.</think><action>{\"score\": 85, \"grade\": \"B\"}</action>",
+    "json_str": "{\"score\": 85, \"grade\": \"B\"}"
+  },
+  {
+    "user_prompt": "Compare two numbers and indicate which one is larger.",
+    "system_prompt": "Provide your internal comparison and output in the following format:\n<think>Detail your numerical comparison</think><action>{\"num1\": (int), \"num2\": (int), \"larger\": (int)}</action>",
+    "completion": "<think>Between 42 and 67, the number 67 is greater.</think><action>{\"num1\": 42, \"num2\": 67, \"larger\": 67}</action>",
+    "json_str": "{\"num1\": 42, \"num2\": 67, \"larger\": 67}"
+  },
+  {
+    "user_prompt": "Decide which side you support in a given debate topic and provide a brief justification.",
+    "system_prompt": "Include your internal reasoning then output as:\n<think>Share your debate reasoning</think><action>{\"side\": \"(string)\", \"justification\": \"(string)\"}</action>",
+    "completion": "<think>I support renewable energy due to its long-term sustainability benefits.</think><action>{\"side\": \"renewable energy\", \"justification\": \"It promotes environmental sustainability and reduces fossil fuel dependency.\"}</action>",
+    "json_str": "{\"side\": \"renewable energy\", \"justification\": \"It promotes environmental sustainability and reduces fossil fuel dependency.\"}"
+  },
+  {
+    "user_prompt": "Review a book and rate its story and character development on a scale of 1 to 10.",
+    "system_prompt": "Include your internal analysis then output in this format:\n<think>Describe your book evaluation</think><action>{\"book\": \"(string)\", \"ratings\": {\"story\": (int), \"characters\": (int)}}</action>",
+    "completion": "<think>I found '1984' to be compelling in narrative and character depth.</think><action>{\"book\": \"1984\", \"ratings\": {\"story\": 9, \"characters\": 8}}</action>",
+    "json_str": "{\"book\": \"1984\", \"ratings\": {\"story\": 9, \"characters\": 8}}"
+  },
+  {
+    "user_prompt": "Design a meal by choosing a main dish, a side, and a dessert.",
+    "system_prompt": "Explain your culinary reasoning then output in the following structure:\n<think>Explain your meal planning</think><action>{\"meal\": {\"main\": \"(string)\", \"side\": \"(string)\", \"dessert\": \"(string)\"}}</action>",
+    "completion": "<think>I opted for a balanced meal with steak for protein, salad for freshness, and cheesecake for a sweet finish.</think><action>{\"meal\": {\"main\": \"steak\", \"side\": \"salad\", \"dessert\": \"cheesecake\"}}</action>",
+    "json_str": "{\"meal\": {\"main\": \"steak\", \"side\": \"salad\", \"dessert\": \"cheesecake\"}}"
+  },
+  {
+    "user_prompt": "Decide on a course of action and estimate the probability of success as a float between 0 and 1.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Describe your decision process</think><action>{\"action_choice\": \"(string)\", \"success_probability\": (float)}</action>",
+    "completion": "<think>I believe that investing in tech startups offers a promising outlook, though risks exist.</think><action>{\"action_choice\": \"invest in tech startups\", \"success_probability\": 0.75}</action>",
+    "json_str": "{\"action_choice\": \"invest in tech startups\", \"success_probability\": 0.75}"
+  },
+  {
+    "user_prompt": "Produce a random five-digit numeric code.",
+    "system_prompt": "Explain your generation method then output in this format:\n<think>Outline your code generation process</think><action>{\"code\": (int)}</action>",
+    "completion": "<think>I generated a random number within the range of 10000 to 99999.</think><action>{\"code\": 48392}</action>",
+    "json_str": "{\"code\": 48392}"
+  },
+  {
+    "user_prompt": "Express your current mood with an emoji and a descriptive word.",
+    "system_prompt": "Share your thought process then output as:\n<think>Reflect on your mood</think><action>{\"emoji\": \"(string)\", \"description\": \"(string)\"}</action>",
+    "completion": "<think>I feel upbeat and positive today.</think><action>{\"emoji\": \"\ud83d\ude0a\", \"description\": \"upbeat\"}</action>",
+    "json_str": "{\"emoji\": \"\ud83d\ude0a\", \"description\": \"upbeat\"}"
+  },
+  {
+    "user_prompt": "Identify three key pillars of a successful business and provide a brief explanation for each.",
+    "system_prompt": "Include your internal reasoning then output in this structure:\n<think>Explain your business insights</think><action>{\"pillars\": [{\"name\": \"(string)\", \"explanation\": \"(string)\"}]}</action>",
+    "completion": "<think>Innovation, customer focus, and adaptability are crucial for long-term success.</think><action>{\"pillars\": [{\"name\": \"innovation\", \"explanation\": \"Drives new ideas and growth\"}, {\"name\": \"customer focus\", \"explanation\": \"Ensures satisfaction and loyalty\"}, {\"name\": \"adaptability\", \"explanation\": \"Allows for market changes\"}]}</action>",
+    "json_str": "{\"pillars\": [{\"name\": \"innovation\", \"explanation\": \"Drives new ideas and growth\"}, {\"name\": \"customer focus\", \"explanation\": \"Ensures satisfaction and loyalty\"}, {\"name\": \"adaptability\", \"explanation\": \"Allows for market changes\"}]}"
+  },
+  {
+    "user_prompt": "Given a number, compute its factorial.",
+    "system_prompt": "Include your calculation method then output as:\n<think>Detail your factorial computation</think><action>{\"number\": (int), \"factorial\": (int)}</action>",
+    "completion": "<think>For number 5, the factorial is 5*4*3*2*1 which equals 120.</think><action>{\"number\": 5, \"factorial\": 120}</action>",
+    "json_str": "{\"number\": 5, \"factorial\": 120}"
+  },
+  {
+    "user_prompt": "Given a list of numbers, compute their average.",
+    "system_prompt": "Explain your computation and output in the following format:\n<think>Discuss your calculation steps</think><action>{\"numbers\": [(int)], \"average\": (float)}</action>",
+    "completion": "<think>I added the numbers 4, 8, and 10 to get 22, then divided by 3 to obtain approximately 7.33.</think><action>{\"numbers\": [4, 8, 10], \"average\": 7.33}</action>",
+    "json_str": "{\"numbers\": [4, 8, 10], \"average\": 7.33}"
+  },
+  {
+    "user_prompt": "Rank a set of tasks by urgency, assigning each a priority level.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Describe your prioritization criteria</think><action>{\"tasks\": [{\"task\": \"(string)\", \"priority\": (int)}]}</action>",
+    "completion": "<think>I prioritized tasks based on deadlines and potential impact.</think><action>{\"tasks\": [{\"task\": \"respond to emails\", \"priority\": 1}, {\"task\": \"finish report\", \"priority\": 2}, {\"task\": \"prepare meeting\", \"priority\": 3}]}</action>",
+    "json_str": "{\"tasks\": [{\"task\": \"respond to emails\", \"priority\": 1}, {\"task\": \"finish report\", \"priority\": 2}, {\"task\": \"prepare meeting\", \"priority\": 3}]}"
+  },
+  {
+    "user_prompt": "Analyze a given email address and decide if it is formatted correctly.",
+    "system_prompt": "Provide your reasoning then output as:\n<think>Explain your format validation</think><action>{\"email\": \"(string)\", \"is_valid\": (bool)}</action>",
+    "completion": "<think>The email 'test@example.com' meets the standard format criteria.</think><action>{\"email\": \"test@example.com\", \"is_valid\": true}</action>",
+    "json_str": "{\"email\": \"test@example.com\", \"is_valid\": true}"
+  },
+  {
+    "user_prompt": "Select your favorite season and justify your choice with a brief explanation.",
+    "system_prompt": "Include your internal reasoning then output as:\n<think>State your seasonal preference</think><action>{\"season\": \"(string)\", \"reason\": \"(string)\"}</action>",
+    "completion": "<think>Autumn appeals to me because of its cool weather and vibrant foliage.</think><action>{\"season\": \"autumn\", \"reason\": \"Cool weather and beautiful colors\"}</action>",
+    "json_str": "{\"season\": \"autumn\", \"reason\": \"Cool weather and beautiful colors\"}"
+  },
+  {
+    "user_prompt": "Outline a simple webpage layout including header, body, and footer.",
+    "system_prompt": "Explain your design considerations then output as:\n<think>Describe your layout design</think><action>{\"layout\": {\"header\": \"(string)\", \"body\": \"(string)\", \"footer\": \"(string)\"}}</action>",
+    "completion": "<think>I opted for a clean design with distinct sections for navigation, content, and additional information.</think><action>{\"layout\": {\"header\": \"Navigation Bar\", \"body\": \"Main Content\", \"footer\": \"Contact Info\"}}</action>",
+    "json_str": "{\"layout\": {\"header\": \"Navigation Bar\", \"body\": \"Main Content\", \"footer\": \"Contact Info\"}}"
+  },
+  {
+    "user_prompt": "Given the radius of a circle, calculate its area.",
+    "system_prompt": "Provide your internal calculations then output as:\n<think>Explain your calculation using \u03c0r^2</think><action>{\"radius\": (float), \"area\": (float)}</action>",
+    "completion": "<think>For a circle with radius 3, the area is calculated as \u03c0 * 3^2 \u2248 28.27.</think><action>{\"radius\": 3.0, \"area\": 28.27}</action>",
+    "json_str": "{\"radius\": 3.0, \"area\": 28.27}"
+  },
+  {
+    "user_prompt": "Create a random password containing at least 8 characters, including letters and numbers.",
+    "system_prompt": "Provide your reasoning then output in this format:\n<think>Describe your password generation logic</think><action>{\"password\": \"(string)\"}</action>",
+    "completion": "<think>I ensured the password has a mix of uppercase, lowercase, and digits for strength.</think><action>{\"password\": \"aB3dE5gH\"}</action>",
+    "json_str": "{\"password\": \"aB3dE5gH\"}"
+  },
+  {
+    "user_prompt": "Evaluate a project proposal and rate its environmental impact on a scale of 1 to 10.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Detail your environmental assessment</think><action>{\"project\": \"(string)\", \"impact_rating\": (int)}</action>",
+    "completion": "<think>I assessed the project as moderately impactful on the environment.</think><action>{\"project\": \"Urban Development\", \"impact_rating\": 6}</action>",
+    "json_str": "{\"project\": \"Urban Development\", \"impact_rating\": 6}"
+  },
+  {
+    "user_prompt": "Outline a recursive function in pseudocode for calculating the Fibonacci sequence.",
+    "system_prompt": "Explain your approach then output as:\n<think>Describe your pseudocode logic</think><action>{\"pseudocode\": \"(string)\"}</action>",
+    "completion": "<think>The function recursively calls itself until reaching base cases.</think><action>{\"pseudocode\": \"function fib(n) { if (n <= 1) return n; else return fib(n-1) + fib(n-2); }\"}</action>",
+    "json_str": "{\"pseudocode\": \"function fib(n) { if (n <= 1) return n; else return fib(n-1) + fib(n-2); }\"}"
+  },
+  {
+    "user_prompt": "Evaluate several investment options and assign each a risk level (low, medium, high).",
+    "system_prompt": "Provide your reasoning then output as:\n<think>Explain your risk assessment</think><action>{\"investments\": [{\"name\": \"(string)\", \"risk\": \"(string)\"}]}</action>",
+    "completion": "<think>I considered market volatility and stability to assign risk levels.</think><action>{\"investments\": [{\"name\": \"stocks\", \"risk\": \"high\"}, {\"name\": \"bonds\", \"risk\": \"low\"}, {\"name\": \"real estate\", \"risk\": \"medium\"}]}</action>",
+    "json_str": "{\"investments\": [{\"name\": \"stocks\", \"risk\": \"high\"}, {\"name\": \"bonds\", \"risk\": \"low\"}, {\"name\": \"real estate\", \"risk\": \"medium\"}]}"
+  },
+  {
+    "user_prompt": "Develop a workout routine that includes three exercises along with their duration in minutes.",
+    "system_prompt": "Explain your internal logic then output in this format:\n<think>Outline your workout planning</think><action>{\"routine\": [{\"exercise\": \"(string)\", \"duration\": (int)}]}</action>",
+    "completion": "<think>I balanced cardio, strength, and flexibility exercises for an effective routine.</think><action>{\"routine\": [{\"exercise\": \"running\", \"duration\": 30}, {\"exercise\": \"weight lifting\", \"duration\": 20}, {\"exercise\": \"yoga\", \"duration\": 15}]}</action>",
+    "json_str": "{\"routine\": [{\"exercise\": \"running\", \"duration\": 30}, {\"exercise\": \"weight lifting\", \"duration\": 20}, {\"exercise\": \"yoga\", \"duration\": 15}]}"
+  },
+  {
+    "user_prompt": "Compile metadata for a book including title, author, publication year, and genre.",
+    "system_prompt": "Provide your reasoning then output as:\n<think>Explain your metadata selection</think><action>{\"book\": {\"title\": \"(string)\", \"author\": \"(string)\", \"year\": (int), \"genre\": \"(string)\"}}</action>",
+    "completion": "<think>I selected a classic novel for demonstration purposes.</think><action>{\"book\": {\"title\": \"Pride and Prejudice\", \"author\": \"Jane Austen\", \"year\": 1813, \"genre\": \"Romance\"}}</action>",
+    "json_str": "{\"book\": {\"title\": \"Pride and Prejudice\", \"author\": \"Jane Austen\", \"year\": 1813, \"genre\": \"Romance\"}}"
+  },
+  {
+    "user_prompt": "Given a temperature in Celsius, convert it to Fahrenheit.",
+    "system_prompt": "Include your conversion process then output as:\n<think>Describe your conversion calculation</think><action>{\"celsius\": (float), \"fahrenheit\": (float)}</action>",
+    "completion": "<think>Using the formula (C * 9/5) + 32, 25\u00b0C converts to 77\u00b0F.</think><action>{\"celsius\": 25.0, \"fahrenheit\": 77.0}</action>",
+    "json_str": "{\"celsius\": 25.0, \"fahrenheit\": 77.0}"
+  },
+  {
+    "user_prompt": "Calculate the probability of an event based on provided odds.",
+    "system_prompt": "Explain your calculation then output as:\n<think>Detail your probability computation</think><action>{\"odds\": \"(string)\", \"probability\": (float)}</action>",
+    "completion": "<think>With odds of 3:1, the probability is calculated as 3/(3+1) = 0.75.</think><action>{\"odds\": \"3:1\", \"probability\": 0.75}</action>",
+    "json_str": "{\"odds\": \"3:1\", \"probability\": 0.75}"
+  },
+  {
+    "user_prompt": "Given a list of country codes, map each code to its corresponding country name.",
+    "system_prompt": "Explain your approach then output as:\n<think>Explain your mapping logic</think><action>{\"countries\": {\"(code)\": \"(string)\"}}</action>",
+    "completion": "<think>I used standard ISO country codes for this mapping.</think><action>{\"countries\": {\"US\": \"United States\", \"GB\": \"United Kingdom\", \"FR\": \"France\"}}</action>",
+    "json_str": "{\"countries\": {\"US\": \"United States\", \"GB\": \"United Kingdom\", \"FR\": \"France\"}}"
+  },
+  {
+    "user_prompt": "Simulate the roll of a six-sided dice.",
+    "system_prompt": "Include your internal simulation logic then output as:\n<think>Describe your dice roll simulation</think><action>{\"dice_result\": (int)}</action>",
+    "completion": "<think>I randomly selected a number between 1 and 6.</think><action>{\"dice_result\": 4}</action>",
+    "json_str": "{\"dice_result\": 4}"
+  },
+  {
+    "user_prompt": "Choose a leadership style from a list and provide a brief justification for its effectiveness.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Explain your leadership analysis</think><action>{\"leadership_style\": \"(string)\", \"justification\": \"(string)\"}</action>",
+    "completion": "<think>Transformational leadership fosters innovation and motivates teams effectively.</think><action>{\"leadership_style\": \"transformational\", \"justification\": \"It inspires creativity and drives positive change.\"}</action>",
+    "json_str": "{\"leadership_style\": \"transformational\", \"justification\": \"It inspires creativity and drives positive change.\"}"
+  },
+  {
+    "user_prompt": "Given two points in 2D space, calculate the Euclidean distance between them.",
+    "system_prompt": "Include your calculation process then output as:\n<think>Detail your distance formula application</think><action>{\"point1\": {\"x\": (float), \"y\": (float)}, \"point2\": {\"x\": (float), \"y\": (float)}, \"distance\": (float)}</action>",
+    "completion": "<think>Using the formula sqrt((x2-x1)^2 + (y2-y1)^2), the distance between (1,2) and (4,6) is 5.0.</think><action>{\"point1\": {\"x\": 1.0, \"y\": 2.0}, \"point2\": {\"x\": 4.0, \"y\": 6.0}, \"distance\": 5.0}</action>",
+    "json_str": "{\"point1\": {\"x\": 1.0, \"y\": 2.0}, \"point2\": {\"x\": 4.0, \"y\": 6.0}, \"distance\": 5.0}"
+  },
+  {
+    "user_prompt": "Evaluate three customer service scenarios and rank them based on customer satisfaction.",
+    "system_prompt": "Provide your reasoning then output in the following format:\n<think>Explain your ranking criteria</think><action>{\"scenarios\": [{\"scenario\": \"(string)\", \"satisfaction\": (int)}]}</action>",
+    "completion": "<think>Based on response time and service quality, I ranked live chat highest.</think><action>{\"scenarios\": [{\"scenario\": \"live chat\", \"satisfaction\": 9}, {\"scenario\": \"phone support\", \"satisfaction\": 8}, {\"scenario\": \"email support\", \"satisfaction\": 7}]}</action>",
+    "json_str": "{\"scenarios\": [{\"scenario\": \"live chat\", \"satisfaction\": 9}, {\"scenario\": \"phone support\", \"satisfaction\": 8}, {\"scenario\": \"email support\", \"satisfaction\": 7}]}"
+  },
+  {
+    "user_prompt": "Generate a pair of random variables with a correlation coefficient.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Describe your correlation generation process</think><action>{\"variable1\": (float), \"variable2\": (float), \"correlation\": (float)}</action>",
+    "completion": "<think>I generated two numbers that demonstrate a moderate positive correlation.</think><action>{\"variable1\": 2.5, \"variable2\": 3.0, \"correlation\": 0.65}</action>",
+    "json_str": "{\"variable1\": 2.5, \"variable2\": 3.0, \"correlation\": 0.65}"
+  },
+  {
+    "user_prompt": "List all prime numbers up to a specified limit.",
+    "system_prompt": "Include your internal prime-checking logic then output as:\n<think>Detail your prime number generation</think><action>{\"limit\": (int), \"primes\": [(int)]}</action>",
+    "completion": "<think>I determined the primes up to 20 as 2, 3, 5, 7, 11, 13, 17, and 19.</think><action>{\"limit\": 20, \"primes\": [2, 3, 5, 7, 11, 13, 17, 19]}</action>",
+    "json_str": "{\"limit\": 20, \"primes\": [2, 3, 5, 7, 11, 13, 17, 19]}"
+  },
+  {
+    "user_prompt": "Construct a survey question with four multiple-choice answers.",
+    "system_prompt": "Share your reasoning then output in the following format:\n<think>Describe your survey design</think><action>{\"question\": \"(string)\", \"options\": [\"(string)\", \"(string)\", \"(string)\", \"(string)\"]}</action>",
+    "completion": "<think>I designed a straightforward question to test general knowledge.</think><action>{\"question\": \"What is the capital of France?\", \"options\": [\"Paris\", \"London\", \"Rome\", \"Berlin\"]}</action>",
+    "json_str": "{\"question\": \"What is the capital of France?\", \"options\": [\"Paris\", \"London\", \"Rome\", \"Berlin\"]}"
+  },
+  {
+    "user_prompt": "Group a list of animals based on their natural habitats.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Explain your categorization logic</think><action>{\"habitats\": {\"(habitat)\": [\"(string)\"]}}</action>",
+    "completion": "<think>I classified the animals according to common habitats such as savannah, ocean, and forest.</think><action>{\"habitats\": {\"savannah\": [\"lion\", \"elephant\"], \"ocean\": [\"shark\", \"dolphin\"], \"forest\": [\"deer\", \"bear\"]}}</action>",
+    "json_str": "{\"habitats\": {\"savannah\": [\"lion\", \"elephant\"], \"ocean\": [\"shark\", \"dolphin\"], \"forest\": [\"deer\", \"bear\"]}}"
+  },
+  {
+    "user_prompt": "Rate different puzzles by difficulty on a scale from 1 to 5.",
+    "system_prompt": "Provide your reasoning then output in the following format:\n<think>Detail your puzzle difficulty rating</think><action>{\"puzzles\": [{\"name\": \"(string)\", \"difficulty\": (int)}]}</action>",
+    "completion": "<think>I rated puzzles based on their complexity and logical requirements.</think><action>{\"puzzles\": [{\"name\": \"crossword\", \"difficulty\": 3}, {\"name\": \"sudoku\", \"difficulty\": 4}, {\"name\": \"jigsaw\", \"difficulty\": 2}]}</action>",
+    "json_str": "{\"puzzles\": [{\"name\": \"crossword\", \"difficulty\": 3}, {\"name\": \"sudoku\", \"difficulty\": 4}, {\"name\": \"jigsaw\", \"difficulty\": 2}]}"
+  },
+  {
+    "user_prompt": "Create a JSON object for a user's profile with keys: username, age, email, and active status.",
+    "system_prompt": "Explain your choices then output in this format:\n<think>Describe your profile structure</think><action>{\"profile\": {\"username\": \"(string)\", \"age\": (int), \"email\": \"(string)\", \"active\": (bool)}}</action>",
+    "completion": "<think>I included standard fields that represent a typical user profile.</think><action>{\"profile\": {\"username\": \"jdoe\", \"age\": 30, \"email\": \"jdoe@example.com\", \"active\": true}}</action>",
+    "json_str": "{\"profile\": {\"username\": \"jdoe\", \"age\": 30, \"email\": \"jdoe@example.com\", \"active\": true}}"
+  },
+  {
+    "user_prompt": "Given two vectors represented as arrays of numbers, compute their dot product.",
+    "system_prompt": "Provide your calculation reasoning then output as:\n<think>Explain your vector multiplication</think><action>{\"vector1\": [(int)], \"vector2\": [(int)], \"dot_product\": (int)}</action>",
+    "completion": "<think>Calculating the dot product of [1, 2, 3] and [4, 5, 6] results in 1*4 + 2*5 + 3*6 = 32.</think><action>{\"vector1\": [1, 2, 3], \"vector2\": [4, 5, 6], \"dot_product\": 32}</action>",
+    "json_str": "{\"vector1\": [1, 2, 3], \"vector2\": [4, 5, 6], \"dot_product\": 32}"
+  },
+  {
+    "user_prompt": "Analyze two datasets and determine if they have similar trends.",
+    "system_prompt": "Provide your reasoning then output as:\n<think>Describe your data consistency evaluation</think><action>{\"dataset1_trend\": \"(string)\", \"dataset2_trend\": \"(string)\", \"consistent\": (bool)}</action>",
+    "completion": "<think>Both datasets exhibit an upward trend, indicating consistency.</think><action>{\"dataset1_trend\": \"upward\", \"dataset2_trend\": \"upward\", \"consistent\": true}</action>",
+    "json_str": "{\"dataset1_trend\": \"upward\", \"dataset2_trend\": \"upward\", \"consistent\": true}"
+  },
+  {
+    "user_prompt": "Suggest a duo of musical instruments that complement each other.",
+    "system_prompt": "Include your internal reasoning then output as:\n<think>Explain your instrument pairing</think><action>{\"instruments\": [(string), (string)]}</action>",
+    "completion": "<think>I chose a piano and a violin for their complementary tonal qualities.</think><action>{\"instruments\": [\"piano\", \"violin\"]}</action>",
+    "json_str": "{\"instruments\": [\"piano\", \"violin\"]}"
+  },
+  {
+    "user_prompt": "Assess given cybersecurity risk factors and compute an overall risk score from 0 to 100.",
+    "system_prompt": "Provide your internal analysis then output as:\n<think>Describe your risk scoring method</think><action>{\"risk_factors\": {\"vulnerability\": (int), \"threat\": (int)}, \"risk_score\": (int)}</action>",
+    "completion": "<think>Combining the vulnerability (40) and threat (50) factors, I derived a moderate risk score.</think><action>{\"risk_factors\": {\"vulnerability\": 40, \"threat\": 50}, \"risk_score\": 45}</action>",
+    "json_str": "{\"risk_factors\": {\"vulnerability\": 40, \"threat\": 50}, \"risk_score\": 45}"
+  },
+  {
+    "user_prompt": "Outline a security protocol that consists of three layers: physical, network, and application.",
+    "system_prompt": "Share your reasoning then output as:\n<think>Detail your security protocol design</think><action>{\"protocol\": {\"physical\": \"(string)\", \"network\": \"(string)\", \"application\": \"(string)\"}}</action>",
+    "completion": "<think>I designed a multi-layered protocol to address different threat vectors effectively.</think><action>{\"protocol\": {\"physical\": \"access control\", \"network\": \"firewall\", \"application\": \"authentication\"}}</action>",
+    "json_str": "{\"protocol\": {\"physical\": \"access control\", \"network\": \"firewall\", \"application\": \"authentication\"}}"
+  },
+  {
+    "user_prompt": "Summarize the following news article and provide a brief summary.",
+    "system_prompt": "Explain your thought process then output as:\n<think>Describe your summarization process</think><action>{\"headline\": \"(string)\", \"summary\": \"(string)\"}</action>",
+    "completion": "<think>I identified the main points from the article focusing on the headline and key details.</think><action>{\"headline\": \"Global Climate Summit Concludes\", \"summary\": \"World leaders agreed on new measures to reduce carbon emissions and promote renewable energy.\"}</action>",
+    "json_str": "{\"headline\": \"Global Climate Summit Concludes\", \"summary\": \"World leaders agreed on new measures to reduce carbon emissions and promote renewable energy.\"}"
+  },
+  {
+    "user_prompt": "Compose a haiku about nature that captures the beauty of a forest.",
+    "system_prompt": "Include your creative process then output as:\n<think>Explain your poetic thought process</think><action>{\"haiku\": \"(string)\"}</action>",
+    "completion": "<think>I focused on imagery of trees, light, and the whispering breeze to evoke a forest atmosphere.</think><action>{\"haiku\": \"Whispering pines sway,\\nSunlight dances on green leaves,\\nNature breathes in peace.\"}</action>",
+    "json_str": "{\"haiku\": \"Whispering pines sway,\\nSunlight dances on green leaves,\\nNature breathes in peace.\"}"
+  },
+  {
+    "user_prompt": "Develop a balanced weekly meal plan that includes breakfast, lunch, and dinner for each day.",
+    "system_prompt": "Describe your planning approach then output as:\n<think>Outline your meal planning strategy</think><action>{\"meal_plan\": {\"Monday\": {\"breakfast\": \"(string)\", \"lunch\": \"(string)\", \"dinner\": \"(string)\"}, ...}}</action>",
+    "completion": "<think>I ensured nutritional balance by incorporating proteins, carbohydrates, and vegetables across the week.</think><action>{\"meal_plan\": {\"Monday\": {\"breakfast\": \"oatmeal with fruits\", \"lunch\": \"grilled chicken salad\", \"dinner\": \"steamed vegetables with quinoa\"}, \"Tuesday\": {\"breakfast\": \"Greek yogurt and granola\", \"lunch\": \"turkey sandwich\", \"dinner\": \"salmon with brown rice\"}, \"Wednesday\": {\"breakfast\": \"smoothie bowl\", \"lunch\": \"vegetable stir-fry\", \"dinner\": \"beef stew with potatoes\"}, \"Thursday\": {\"breakfast\": \"eggs and toast\", \"lunch\": \"pasta salad\", \"dinner\": \"chicken curry with rice\"}, \"Friday\": {\"breakfast\": \"avocado toast\", \"lunch\": \"sushi\", \"dinner\": \"grilled shrimp with salad\"}, \"Saturday\": {\"breakfast\": \"pancakes\", \"lunch\": \"caesar salad\", \"dinner\": \"vegetable lasagna\"}, \"Sunday\": {\"breakfast\": \"fruit salad\", \"lunch\": \"BLT sandwich\", \"dinner\": \"roasted chicken with veggies\"}}}</action>",
+    "json_str": "{\"meal_plan\": {\"Monday\": {\"breakfast\": \"oatmeal with fruits\", \"lunch\": \"grilled chicken salad\", \"dinner\": \"steamed vegetables with quinoa\"}, \"Tuesday\": {\"breakfast\": \"Greek yogurt and granola\", \"lunch\": \"turkey sandwich\", \"dinner\": \"salmon with brown rice\"}, \"Wednesday\": {\"breakfast\": \"smoothie bowl\", \"lunch\": \"vegetable stir-fry\", \"dinner\": \"beef stew with potatoes\"}, \"Thursday\": {\"breakfast\": \"eggs and toast\", \"lunch\": \"pasta salad\", \"dinner\": \"chicken curry with rice\"}, \"Friday\": {\"breakfast\": \"avocado toast\", \"lunch\": \"sushi\", \"dinner\": \"grilled shrimp with salad\"}, \"Saturday\": {\"breakfast\": \"pancakes\", \"lunch\": \"caesar salad\", \"dinner\": \"vegetable lasagna\"}, \"Sunday\": {\"breakfast\": \"fruit salad\", \"lunch\": \"BLT sandwich\", \"dinner\": \"roasted chicken with veggies\"}}}"
+  },
+  {
+    "user_prompt": "Translate the following sentence from English to Spanish.",
+    "system_prompt": "Provide your translation reasoning then output as:\n<think>Explain your translation approach</think><action>{\"original\": \"(string)\", \"translated\": \"(string)\"}</action>",
+    "completion": "<think>I analyzed the sentence structure and vocabulary to ensure an accurate translation.</think><action>{\"original\": \"The weather is beautiful today.\", \"translated\": \"El clima es hermoso hoy.\"}</action>",
+    "json_str": "{\"original\": \"The weather is beautiful today.\", \"translated\": \"El clima es hermoso hoy.\"}"
+  },
+  {
+    "user_prompt": "Design a simple database schema for an e-commerce website.",
+    "system_prompt": "Explain your design considerations then output as:\n<think>Detail your schema design process</think><action>{\"schema\": {\"tables\": [{\"name\": \"(string)\", \"columns\": [\"(string)\"]}]}}</action>",
+    "completion": "<think>I focused on key entities such as users, products, and orders to ensure a robust relational design.</think><action>{\"schema\": {\"tables\": [{\"name\": \"Users\", \"columns\": [\"user_id\", \"username\", \"email\", \"password\"]}, {\"name\": \"Products\", \"columns\": [\"product_id\", \"name\", \"description\", \"price\"]}, {\"name\": \"Orders\", \"columns\": [\"order_id\", \"user_id\", \"product_id\", \"quantity\", \"order_date\"]}]}}</action>",
+    "json_str": "{\"schema\": {\"tables\": [{\"name\": \"Users\", \"columns\": [\"user_id\", \"username\", \"email\", \"password\"]}, {\"name\": \"Products\", \"columns\": [\"product_id\", \"name\", \"description\", \"price\"]}, {\"name\": \"Orders\", \"columns\": [\"order_id\", \"user_id\", \"product_id\", \"quantity\", \"order_date\"]}]}}"
+  },
+  {
+    "user_prompt": "Calculate the compound interest for a given principal, annual rate, and time period.",
+    "system_prompt": "Explain your calculation then output as:\n<think>Outline your compound interest formula application</think><action>{\"principal\": (float), \"rate\": (float), \"time\": (int), \"amount\": (float)}</action>",
+    "completion": "<think>I applied the formula A = P * (1 + r)^t to compute the future value of the investment.</think><action>{\"principal\": 1000.0, \"rate\": 0.05, \"time\": 10, \"amount\": 1628.89}</action>",
+    "json_str": "{\"principal\": 1000.0, \"rate\": 0.05, \"time\": 10, \"amount\": 1628.89}"
+  },
+  {
+    "user_prompt": "Simulate a weather forecast for a city given typical conditions.",
+    "system_prompt": "Include your reasoning then output as:\n<think>Describe your forecast simulation process</think><action>{\"forecast\": {\"temperature\": (int), \"humidity\": (int), \"condition\": \"(string)\"}}</action>",
+    "completion": "<think>I used average seasonal data to simulate realistic weather conditions.</think><action>{\"forecast\": {\"temperature\": 22, \"humidity\": 60, \"condition\": \"partly cloudy\"}}</action>",
+    "json_str": "{\"forecast\": {\"temperature\": 22, \"humidity\": 60, \"condition\": \"partly cloudy\"}}"
+  },
+  {
+    "user_prompt": "Provide a list of synonyms for a given word.",
+    "system_prompt": "Explain your lexical selection then output as:\n<think>Outline your synonym selection process</think><action>{\"word\": \"(string)\", \"synonyms\": [\"(string)\", \"(string)\", \"(string)\"]}</action>",
+    "completion": "<think>I selected words with similar meanings that can be used interchangeably in various contexts.</think><action>{\"word\": \"happy\", \"synonyms\": [\"joyful\", \"cheerful\", \"content\"]}</action>",
+    "json_str": "{\"word\": \"happy\", \"synonyms\": [\"joyful\", \"cheerful\", \"content\"]}"
+  },
+  {
+    "user_prompt": "Evaluate the mathematical expression '3 + 4 * 2 - 1' using proper order of operations.",
+    "system_prompt": "Explain your steps then output as:\n<think>Detail your calculation order</think><action>{\"expression\": \"(string)\", \"result\": (int)}</action>",
+    "completion": "<think>I performed the multiplication first (4 * 2 = 8), then added 3 to get 11, and finally subtracted 1 to arrive at 10.</think><action>{\"expression\": \"3 + 4 * 2 - 1\", \"result\": 10}</action>",
+    "json_str": "{\"expression\": \"3 + 4 * 2 - 1\", \"result\": 10}"
+  },
+  {
+    "user_prompt": "Construct a basic HTML structure for a personal blog page.",
+    "system_prompt": "Explain your design then output as:\n<think>Describe your HTML layout reasoning</think><action>{\"html\": \"(string)\"}</action>",
+    "completion": "<think>I structured the page with essential elements including a doctype declaration, header, main content, and footer for clarity and accessibility.</think><action>{\"html\": \"<!DOCTYPE html><html><head><title>My Blog</title></head><body><header><h1>Welcome to My Blog</h1></header><main><p>Blog content goes here.</p></main><footer><p>Contact: email@example.com</p></footer></body></html>\"}</action>",
+    "json_str": "{\"html\": \"<!DOCTYPE html><html><head><title>My Blog</title></head><body><header><h1>Welcome to My Blog</h1></header><main><p>Blog content goes here.</p></main><footer><p>Contact: email@example.com</p></footer></body></html>\"}"
+  },
+  {
+    "user_prompt": "Compare two sorting algorithms and analyze their time complexities.",
+    "system_prompt": "Provide your reasoning then output as:\n<think>Explain your analysis</think><action>{\"algorithm1\": \"(string)\", \"time_complexity1\": \"(string)\", \"algorithm2\": \"(string)\", \"time_complexity2\": \"(string)\"}</action>",
+    "completion": "<think>I compared QuickSort and MergeSort; both average O(n log n), but QuickSort can degrade to O(n^2) in the worst case while MergeSort consistently remains O(n log n).</think><action>{\"algorithm1\": \"QuickSort\", \"time_complexity1\": \"O(n log n) average, O(n^2) worst-case\", \"algorithm2\": \"MergeSort\", \"time_complexity2\": \"O(n log n)\"}</action>",
+    "json_str": "{\"algorithm1\": \"QuickSort\", \"time_complexity1\": \"O(n log n) average, O(n^2) worst-case\", \"algorithm2\": \"MergeSort\", \"time_complexity2\": \"O(n log n)\"}"
+  },
+  {
+    "user_prompt": "Plan a one-day itinerary for a city visit.",
+    "system_prompt": "Include key attractions and times. Explain your planning then output as:\n<think>Outline your itinerary rationale</think><action>{\"itinerary\": [{\"time\": \"(string)\", \"activity\": \"(string)\"}]}</action>",
+    "completion": "<think>I selected a mix of cultural, culinary, and leisure activities to offer a well-rounded experience.</think><action>{\"itinerary\": [{\"time\": \"09:00\", \"activity\": \"Visit the museum\"}, {\"time\": \"12:00\", \"activity\": \"Lunch at a local bistro\"}, {\"time\": \"15:00\", \"activity\": \"City walking tour\"}, {\"time\": \"18:00\", \"activity\": \"Dinner and live music\"}]}</action>",
+    "json_str": "{\"itinerary\": [{\"time\": \"09:00\", \"activity\": \"Visit the museum\"}, {\"time\": \"12:00\", \"activity\": \"Lunch at a local bistro\"}, {\"time\": \"15:00\", \"activity\": \"City walking tour\"}, {\"time\": \"18:00\", \"activity\": \"Dinner and live music\"}]}"
+  },
+  {
+    "user_prompt": "Evaluate a startup idea for a food delivery app and assign an innovation score out of 10.",
+    "system_prompt": "Explain your assessment then output as:\n<think>Describe your evaluation criteria</think><action>{\"startup\": \"(string)\", \"innovation_score\": (int)}</action>",
+    "completion": "<think>I considered market need, competition, and unique features; the idea shows promise but faces stiff competition.</think><action>{\"startup\": \"QuickBite Delivery\", \"innovation_score\": 7}</action>",
+    "json_str": "{\"startup\": \"QuickBite Delivery\", \"innovation_score\": 7}"
+  },
+  {
+    "user_prompt": "Write a short product review for a new pair of wireless earbuds.",
+    "system_prompt": "Include pros and cons. Explain your review process then output as:\n<think>Detail your review reasoning</think><action>{\"product\": \"(string)\", \"review\": \"(string)\", \"rating\": (int)}</action>",
+    "completion": "<think>I highlighted the earbuds' excellent sound quality and battery life while noting minor connectivity issues.</think><action>{\"product\": \"SonicPulse Earbuds\", \"review\": \"Great audio and comfortable fit, but occasional connectivity drops.\", \"rating\": 8}</action>",
+    "json_str": "{\"product\": \"SonicPulse Earbuds\", \"review\": \"Great audio and comfortable fit, but occasional connectivity drops.\", \"rating\": 8}"
+  },
+  {
+    "user_prompt": "Determine the winner of a basketball game given the scores of two teams.",
+    "system_prompt": "Explain your reasoning then output as:\n<think>Compare the scores</think><action>{\"team1\": \"(string)\", \"score1\": (int), \"team2\": \"(string)\", \"score2\": (int), \"winner\": \"(string)\"}</action>",
+    "completion": "<think>I compared the scores; with the Lakers scoring 102 and the Celtics 98, the Lakers win.</think><action>{\"team1\": \"Lakers\", \"score1\": 102, \"team2\": \"Celtics\", \"score2\": 98, \"winner\": \"Lakers\"}</action>",
+    "json_str": "{\"team1\": \"Lakers\", \"score1\": 102, \"team2\": \"Celtics\", \"score2\": 98, \"winner\": \"Lakers\"}"
+  },
+  {
+    "user_prompt": "Generate a random alphanumeric string of length 12.",
+    "system_prompt": "Provide your generation logic then output as:\n<think>Describe your random generation process</think><action>{\"random_string\": \"(string)\"}</action>",
+    "completion": "<think>I combined uppercase, lowercase letters and digits to create a secure random string.</think><action>{\"random_string\": \"a1B2c3D4e5F6\"}</action>",
+    "json_str": "{\"random_string\": \"a1B2c3D4e5F6\"}"
+  },
+  {
+    "user_prompt": "Translate the following sentence from German to English.",
+    "system_prompt": "Explain your translation process then output as:\n<think>Analyze the sentence structure</think><action>{\"original\": \"(string)\", \"translated\": \"(string)\"}</action>",
+    "completion": "<think>I analyzed the grammar and vocabulary for an accurate translation.</think><action>{\"original\": \"Das Wetter ist heute sch\u00f6n.\", \"translated\": \"The weather is nice today.\"}</action>",
+    "json_str": "{\"original\": \"Das Wetter ist heute sch\u00f6n.\", \"translated\": \"The weather is nice today.\"}"
+  },
+  {
+    "user_prompt": "Calculate the area of a rectangle given its length and width.",
+    "system_prompt": "Explain your calculation then output as:\n<think>Apply the formula length * width</think><action>{\"length\": (float), \"width\": (float), \"area\": (float)}</action>",
+    "completion": "<think>Multiplying length by width gives the area.</think><action>{\"length\": 8.5, \"width\": 3.2, \"area\": 27.2}</action>",
+    "json_str": "{\"length\": 8.5, \"width\": 3.2, \"area\": 27.2}"
+  },
+  {
+    "user_prompt": "Construct a simple Python function that returns the factorial of a number.",
+    "system_prompt": "Explain your coding approach then output as:\n<think>Outline your recursive function logic</think><action>{\"python_code\": \"(string)\"}</action>",
+    "completion": "<think>I implemented a recursive approach to compute factorials.</think><action>{\"python_code\": \"def factorial(n):\\n    if n <= 1:\\n        return 1\\n    return n * factorial(n-1)\\n\\nprint(factorial(5))\"}</action>",
+    "json_str": "{\"python_code\": \"def factorial(n):\\n    if n <= 1:\\n        return 1\\n    return n * factorial(n-1)\\n\\nprint(factorial(5))\"}"
+  },
+  {
+    "user_prompt": "Describe the life cycle of a butterfly in three concise sentences.",
+    "system_prompt": "Explain your narrative then output as:\n<think>Summarize the stages of metamorphosis</think><action>{\"description\": \"(string)\"}</action>",
+    "completion": "<think>I focused on the main phases of the butterfly's life cycle.</think><action>{\"description\": \"A butterfly begins as an egg, hatches into a caterpillar, then enters a pupa stage before emerging as an adult.\"}</action>",
+    "json_str": "{\"description\": \"A butterfly begins as an egg, hatches into a caterpillar, then enters a pupa stage before emerging as an adult.\"}"
+  },
+  {
+    "user_prompt": "List five African countries with their capitals.",
+    "system_prompt": "Explain your selection then output as:\n<think>Match each country with its capital</think><action>{\"countries\": {\"(country)\": \"(capital)\"}}</action>",
+    "completion": "<think>I selected well-known countries and their capitals.</think><action>{\"countries\": {\"Kenya\": \"Nairobi\", \"Egypt\": \"Cairo\", \"Nigeria\": \"Abuja\", \"South Africa\": \"Pretoria\", \"Ghana\": \"Accra\"}}</action>",
+    "json_str": "{\"countries\": {\"Kenya\": \"Nairobi\", \"Egypt\": \"Cairo\", \"Nigeria\": \"Abuja\", \"South Africa\": \"Pretoria\", \"Ghana\": \"Accra\"}}"
+  },
+  {
+    "user_prompt": "Identify three benefits of daily meditation and provide a brief explanation for each.",
+    "system_prompt": "Explain your thought process then output as:\n<think>Assess the mental and physical benefits</think><action>{\"benefits\": [{\"benefit\": \"(string)\", \"explanation\": \"(string)\"}]}</action>",
+    "completion": "<think>I considered stress reduction, focus improvement, and emotional balance.</think><action>{\"benefits\": [{\"benefit\": \"Stress Reduction\", \"explanation\": \"Helps lower cortisol levels.\"}, {\"benefit\": \"Improved Focus\", \"explanation\": \"Enhances concentration.\"}, {\"benefit\": \"Emotional Balance\", \"explanation\": \"Promotes mental well-being.\"}]}</action>",
+    "json_str": "{\"benefits\": [{\"benefit\": \"Stress Reduction\", \"explanation\": \"Helps lower cortisol levels.\"}, {\"benefit\": \"Improved Focus\", \"explanation\": \"Enhances concentration.\"}, {\"benefit\": \"Emotional Balance\", \"explanation\": \"Promotes mental well-being.\"}]}"
+  },
+  {
+    "user_prompt": "Simulate 10 coin tosses and output the sequence of heads (H) and tails (T).",
+    "system_prompt": "Explain your simulation method then output as:\n<think>Randomly select H or T</think><action>{\"tosses\": [\"(string)\"]}</action>",
+    "completion": "<think>I randomly generated a sequence for 10 coin tosses.</think><action>{\"tosses\": [\"H\", \"T\", \"H\", \"H\", \"T\", \"T\", \"H\", \"T\", \"H\", \"H\"]}</action>",
+    "json_str": "{\"tosses\": [\"H\", \"T\", \"H\", \"H\", \"T\", \"T\", \"H\", \"T\", \"H\", \"H\"]}"
+  },
+  {
+    "user_prompt": "Design a logo description for a fictional eco-friendly brand.",
+    "system_prompt": "Include your design considerations then output as:\n<think>Incorporate green elements and nature imagery</think><action>{\"logo_description\": \"(string)\"}</action>",
+    "completion": "<think>I emphasized natural elements to evoke sustainability.</think><action>{\"logo_description\": \"A circular emblem featuring a green leaf intertwined with a blue water droplet to symbolize nature and eco-friendliness.\"}</action>",
+    "json_str": "{\"logo_description\": \"A circular emblem featuring a green leaf intertwined with a blue water droplet to symbolize nature and eco-friendliness.\"}"
+  },
+  {
+    "user_prompt": "Write an encouraging message for someone starting a new job.",
+    "system_prompt": "Explain your tone and intention then output as:\n<think>Focus on positivity and reassurance</think><action>{\"message\": \"(string)\"}</action>",
+    "completion": "<think>I aimed for warmth and confidence in my message.</think><action>{\"message\": \"You have the talent and drive to excel. Embrace this new opportunity with confidence and enthusiasm!\"}</action>",
+    "json_str": "{\"message\": \"You have the talent and drive to excel. Embrace this new opportunity with confidence and enthusiasm!\"}"
+  },
+  {
+    "user_prompt": "Outline the key steps to bake a chocolate cake.",
+    "system_prompt": "Provide your step-by-step process then output as:\n<think>Break down the recipe into simple steps</think><action>{\"steps\": [\"(string)\"]}</action>",
+    "completion": "<think>I detailed the process in clear sequential steps.</think><action>{\"steps\": [\"Preheat the oven to 350\u00b0F\", \"Mix dry and wet ingredients separately\", \"Combine ingredients and pour into a pan\", \"Bake for 30-35 minutes\", \"Let cool and frost\"]}</action>",
+    "json_str": "{\"steps\": [\"Preheat the oven to 350\u00b0F\", \"Mix dry and wet ingredients separately\", \"Combine ingredients and pour into a pan\", \"Bake for 30-35 minutes\", \"Let cool and frost\"]}"
+  },
+  {
+    "user_prompt": "Assess the nutritional content of a basic green salad consisting of lettuce, tomatoes, and cucumbers.",
+    "system_prompt": "Explain your analysis then output as:\n<think>Evaluate vitamins and fiber content</think><action>{\"salad\": {\"ingredients\": [\"(string)\"], \"nutritional_benefits\": \"(string)\"}}</action>",
+    "completion": "<think>I focused on the low calorie and high nutrient properties of fresh vegetables.</think><action>{\"salad\": {\"ingredients\": [\"lettuce\", \"tomatoes\", \"cucumbers\"], \"nutritional_benefits\": \"Low in calories, high in vitamins A, C, and dietary fiber.\"}}</action>",
+    "json_str": "{\"salad\": {\"ingredients\": [\"lettuce\", \"tomatoes\", \"cucumbers\"], \"nutritional_benefits\": \"Low in calories, high in vitamins A, C, and dietary fiber.\"}}"
+  },
+  {
+    "user_prompt": "Convert the decimal number 156 to binary.",
+    "system_prompt": "Explain your conversion then output as:\n<think>Divide by 2 iteratively</think><action>{\"decimal\": 156, \"binary\": \"(string)\"}</action>",
+    "completion": "<think>I repeatedly divided by 2 and tracked remainders to form the binary number.</think><action>{\"decimal\": 156, \"binary\": \"10011100\"}</action>",
+    "json_str": "{\"decimal\": 156, \"binary\": \"10011100\"}"
+  },
+  {
+    "user_prompt": "List five interview questions suitable for a front-end developer role.",
+    "system_prompt": "Explain your question selection then output as:\n<think>Focus on HTML, CSS, JavaScript, and frameworks</think><action>{\"questions\": [\"(string)\", \"(string)\", \"(string)\", \"(string)\", \"(string)\"]}</action>",
+    "completion": "<think>I chose questions that assess both technical skills and design sense.</think><action>{\"questions\": [\"How do you ensure responsive design in your projects?\", \"Can you explain CSS specificity?\", \"What is your experience with JavaScript frameworks like React or Vue?\", \"How do you optimize web performance?\", \"Describe a challenging UI problem you solved.\"]}</action>",
+    "json_str": "{\"questions\": [\"How do you ensure responsive design in your projects?\", \"Can you explain CSS specificity?\", \"What is your experience with JavaScript frameworks like React or Vue?\", \"How do you optimize web performance?\", \"Describe a challenging UI problem you solved.\"]}"
+  },
+  {
+    "user_prompt": "Describe a futuristic transportation method and rate its feasibility on a scale of 1 to 10.",
+    "system_prompt": "Explain your thought process then output as:\n<think>Consider technological trends and sustainability</think><action>{\"transport\": \"(string)\", \"feasibility\": (int)}</action>",
+    "completion": "<think>I envisioned hyperloop technology as both innovative and plausible in the near future.</think><action>{\"transport\": \"Hyperloop travel\", \"feasibility\": 8}</action>",
+    "json_str": "{\"transport\": \"Hyperloop travel\", \"feasibility\": 8}"
+  },
+  {
+    "user_prompt": "Design a 3-month study plan for learning Japanese.",
+    "system_prompt": "Include your strategy then output as:\n<think>Structure the plan into progressive monthly goals</think><action>{\"study_plan\": {\"month1\": \"(string)\", \"month2\": \"(string)\", \"month3\": \"(string)\"}}</action>",
+    "completion": "<think>I organized the plan to build from basic vocabulary to conversational fluency.</think><action>{\"study_plan\": {\"month1\": \"Learn Hiragana, Katakana, and basic vocabulary\", \"month2\": \"Study simple grammar and common phrases, begin Kanji\", \"month3\": \"Practice conversation and immerse in Japanese media\"}}</action>",
+    "json_str": "{\"study_plan\": {\"month1\": \"Learn Hiragana, Katakana, and basic vocabulary\", \"month2\": \"Study simple grammar and common phrases, begin Kanji\", \"month3\": \"Practice conversation and immerse in Japanese media\"}}"
+  },
+  {
+    "user_prompt": "Calculate the simple interest earned on a principal of $500 at an annual rate of 6% over 3 years.",
+    "system_prompt": "Explain your calculation then output as:\n<think>Apply the formula I = P * r * t</think><action>{\"principal\": 500, \"rate\": 0.06, \"time\": 3, \"interest\": (float)}</action>",
+    "completion": "<think>I multiplied the principal by the rate and time to obtain the interest.</think><action>{\"principal\": 500, \"rate\": 0.06, \"time\": 3, \"interest\": 90.0}</action>",
+    "json_str": "{\"principal\": 500, \"rate\": 0.06, \"time\": 3, \"interest\": 90.0}"
+  },
+  {
+    "user_prompt": "Compare the genres of horror and comedy movies, explaining which you find more engaging and why.",
+    "system_prompt": "Explain your comparison then output as:\n<think>Weigh narrative tension versus humor</think><action>{\"preferred_genre\": \"(string)\", \"explanation\": \"(string)\"}</action>",
+    "completion": "<think>I considered the emotional impact and entertainment value of both genres.</think><action>{\"preferred_genre\": \"Comedy\", \"explanation\": \"Comedy provides light-hearted relief and fosters a sense of connection through shared humor.\"}</action>",
+    "json_str": "{\"preferred_genre\": \"Comedy\", \"explanation\": \"Comedy provides light-hearted relief and fosters a sense of connection through shared humor.\"}"
+  },
+  {
+    "user_prompt": "Analyze the impact of social media on interpersonal communication and summarize your findings.",
+    "system_prompt": "Explain your analysis then output as:\n<think>Discuss both positive and negative effects</think><action>{\"impact_summary\": \"(string)\"}</action>",
+    "completion": "<think>I noted that while social media increases connectivity, it may also reduce the quality of face-to-face interactions.</think><action>{\"impact_summary\": \"Social media enhances connectivity and information sharing but can also lead to superficial interactions and decreased in-person communication.\"}</action>",
+    "json_str": "{\"impact_summary\": \"Social media enhances connectivity and information sharing but can also lead to superficial interactions and decreased in-person communication.\"}"
+  },
+  {
+    "user_prompt": "Devise a clever pun related to programming languages.",
+    "system_prompt": "Explain your creative process then output as:\n<think>Play with words in a programming context</think><action>{\"pun\": \"(string)\"}</action>",
+    "completion": "<think>I used a play on words involving a common network protocol.</think><action>{\"pun\": \"I would tell you a joke about UDP, but you might not get it.\"}</action>",
+    "json_str": "{\"pun\": \"I would tell you a joke about UDP, but you might not get it.\"}"
+  },
+  {
+    "user_prompt": "Select a classical music piece and describe its mood and instrumentation.",
+    "system_prompt": "Explain your choice then output as:\n<think>Focus on the emotional tone and orchestration</think><action>{\"piece\": \"(string)\", \"mood\": \"(string)\", \"instruments\": [\"(string)\"]}</action>",
+    "completion": "<think>I chose a piece known for its stirring dynamics and rich orchestration.</think><action>{\"piece\": \"Beethoven's Symphony No. 7\", \"mood\": \"Uplifting and dynamic\", \"instruments\": [\"strings\", \"brass\", \"percussion\"]}</action>",
+    "json_str": "{\"piece\": \"Beethoven's Symphony No. 7\", \"mood\": \"Uplifting and dynamic\", \"instruments\": [\"strings\", \"brass\", \"percussion\"]}"
+  },
+  {
+    "user_prompt": "Recommend a recipe for a hearty vegan stew.",
+    "system_prompt": "Provide your culinary reasoning then output as:\n<think>Consider nutritional balance and robust flavors</think><action>{\"recipe\": \"(string)\", \"key_ingredients\": [\"(string)\"]}</action>",
+    "completion": "<think>I aimed for a stew that is both filling and nutrient-rich.</think><action>{\"recipe\": \"Hearty Vegan Stew\", \"key_ingredients\": [\"lentils\", \"sweet potatoes\", \"tomatoes\", \"kale\"]}</action>",
+    "json_str": "{\"recipe\": \"Hearty Vegan Stew\", \"key_ingredients\": [\"lentils\", \"sweet potatoes\", \"tomatoes\", \"kale\"]}"
+  },
+  {
+    "user_prompt": "Outline the advantages and disadvantages of remote work.",
+    "system_prompt": "Explain your evaluation then output as:\n<think>List the pros and cons based on flexibility and isolation</think><action>{\"remote_work\": {\"advantages\": [\"(string)\"], \"disadvantages\": [\"(string)\"]}}</action>",
+    "completion": "<think>I weighed the benefits of flexibility against the potential downsides of isolation.</think><action>{\"remote_work\": {\"advantages\": [\"Flexibility\", \"Reduced commute\"], \"disadvantages\": [\"Isolation\", \"Blurred work-life boundaries\"]}}</action>",
+    "json_str": "{\"remote_work\": {\"advantages\": [\"Flexibility\", \"Reduced commute\"], \"disadvantages\": [\"Isolation\", \"Blurred work-life boundaries\"]}}"
+  },
+  {
+    "user_prompt": "Construct a JSON object representing a car with attributes make, model, year, and color.",
+    "system_prompt": "Explain your choices then output as:\n<think>Create a standard car profile</think><action>{\"car\": {\"make\": \"(string)\", \"model\": \"(string)\", \"year\": (int), \"color\": \"(string)\"}}</action>",
+    "completion": "<think>I used common attributes to describe a typical modern car.</think><action>{\"car\": {\"make\": \"Toyota\", \"model\": \"Camry\", \"year\": 2020, \"color\": \"Silver\"}}</action>",
+    "json_str": "{\"car\": {\"make\": \"Toyota\", \"model\": \"Camry\", \"year\": 2020, \"color\": \"Silver\"}}"
+  },
+  {
+    "user_prompt": "Write a brief biography for Mahatma Gandhi highlighting key life events.",
+    "system_prompt": "Explain your focus then output as:\n<think>Highlight his non-violent philosophy and leadership</think><action>{\"biography\": \"(string)\"}</action>",
+    "completion": "<think>I emphasized Gandhi's commitment to non-violence and civil rights.</think><action>{\"biography\": \"Mahatma Gandhi was a pivotal leader in the Indian independence movement, renowned for his philosophy of non-violent resistance and his efforts to promote social justice.\"}</action>",
+    "json_str": "{\"biography\": \"Mahatma Gandhi was a pivotal leader in the Indian independence movement, renowned for his philosophy of non-violent resistance and his efforts to promote social justice.\"}"
+  },
+  {
+    "user_prompt": "Evaluate the environmental benefits of using solar energy.",
+    "system_prompt": "Explain your reasoning then output as:\n<think>Consider renewable energy advantages and reduced emissions</think><action>{\"energy_source\": \"(string)\", \"benefits\": \"(string)\", \"rating\": (int)}</action>",
+    "completion": "<think>Solar energy is renewable and greatly reduces carbon emissions.</think><action>{\"energy_source\": \"Solar Energy\", \"benefits\": \"Renewable, low emissions, and sustainable over the long term\", \"rating\": 9}</action>",
+    "json_str": "{\"energy_source\": \"Solar Energy\", \"benefits\": \"Renewable, low emissions, and sustainable over the long term\", \"rating\": 9}"
+  },
+  {
+    "user_prompt": "Propose an intriguing title for a science fiction novel.",
+    "system_prompt": "Explain your creative process then output as:\n<think>Combine futuristic elements and mystery</think><action>{\"novel_title\": \"(string)\"}</action>",
+    "completion": "<think>I aimed for a title that evokes exploration and wonder.</think><action>{\"novel_title\": \"Celestial Horizons\"}</action>",
+    "json_str": "{\"novel_title\": \"Celestial Horizons\"}"
+  },
+  {
+    "user_prompt": "Calculate the mean and median of the following list of numbers: [12, 7, 9, 15, 10].",
+    "system_prompt": "Explain your calculation then output as:\n<think>Sort and compute the average</think><action>{\"numbers\": [12, 7, 9, 15, 10], \"mean\": (float), \"median\": (float)}</action>",
+    "completion": "<think>I computed the average and sorted the list to find the median.</think><action>{\"numbers\": [12, 7, 9, 15, 10], \"mean\": 10.6, \"median\": 10}</action>",
+    "json_str": "{\"numbers\": [12, 7, 9, 15, 10], \"mean\": 10.6, \"median\": 10}"
+  },
+  {
+    "user_prompt": "Describe your favorite hobby and why it brings you joy.",
+    "system_prompt": "Explain your personal connection then output as:\n<think>Reflect on its creative and relaxing aspects</think><action>{\"hobby\": \"(string)\", \"reason\": \"(string)\"}</action>",
+    "completion": "<think>I chose a hobby that allows for creativity and mindfulness.</think><action>{\"hobby\": \"Photography\", \"reason\": \"It enables me to capture and appreciate the beauty in everyday life.\"}</action>",
+    "json_str": "{\"hobby\": \"Photography\", \"reason\": \"It enables me to capture and appreciate the beauty in everyday life.\"}"
+  },
+  {
+    "user_prompt": "Generate a cardio-focused workout routine including three exercises and their durations.",
+    "system_prompt": "Explain your selection then output as:\n<think>Balance intensity and variety</think><action>{\"workout\": [{\"exercise\": \"(string)\", \"duration_minutes\": (int)}]}</action>",
+    "completion": "<think>I combined different cardio activities to create an engaging routine.</think><action>{\"workout\": [{\"exercise\": \"Jogging\", \"duration_minutes\": 30}, {\"exercise\": \"Cycling\", \"duration_minutes\": 20}, {\"exercise\": \"Jump Rope\", \"duration_minutes\": 10}]}</action>",
+    "json_str": "{\"workout\": [{\"exercise\": \"Jogging\", \"duration_minutes\": 30}, {\"exercise\": \"Cycling\", \"duration_minutes\": 20}, {\"exercise\": \"Jump Rope\", \"duration_minutes\": 10}]}"
+  },
+  {
+    "user_prompt": "Simulate selecting a random book from a reading list of five titles.",
+    "system_prompt": "Explain your randomization method then output as:\n<think>Randomly choose one title from the list</think><action>{\"selected_book\": \"(string)\"}</action>",
+    "completion": "<think>I randomly picked one title from the list using a uniform selection method.</think><action>{\"selected_book\": \"1984\"}</action>",
+    "json_str": "{\"selected_book\": \"1984\"}"
+  },
+  {
+    "user_prompt": "Explain the difference between 'affect' and 'effect' with a brief example for each.",
+    "system_prompt": "Explain your linguistic reasoning then output as:\n<think>Differentiate based on part of speech and usage</think><action>{\"affect_definition\": \"(string)\", \"effect_definition\": \"(string)\", \"examples\": {\"affect\": \"(string)\", \"effect\": \"(string)\"}}</action>",
+    "completion": "<think>I distinguished the verb and noun forms with clear examples.</think><action>{\"affect_definition\": \"A verb meaning to influence or impact.\", \"effect_definition\": \"A noun referring to the result or outcome.\", \"examples\": {\"affect\": \"The weather can affect your mood.\", \"effect\": \"The effect of the medicine was immediate.\"}}</action>",
+    "json_str": "{\"affect_definition\": \"A verb meaning to influence or impact.\", \"effect_definition\": \"A noun referring to the result or outcome.\", \"examples\": {\"affect\": \"The weather can affect your mood.\", \"effect\": \"The effect of the medicine was immediate.\"}}"
+  },
+  {
+    "user_prompt": "Design a weekly study schedule for a college student balancing classes, study, and leisure.",
+    "system_prompt": "Explain your planning then output as:\n<think>Allocate time blocks for each activity</think><action>{\"schedule\": {\"Monday\": \"(string)\", \"Tuesday\": \"(string)\", \"Wednesday\": \"(string)\", \"Thursday\": \"(string)\", \"Friday\": \"(string)\"}}</action>",
+    "completion": "<think>I created a balanced schedule to ensure productivity and rest.</think><action>{\"schedule\": {\"Monday\": \"Morning: Classes; Afternoon: Library study; Evening: Leisure activities\", \"Tuesday\": \"Morning: Classes; Afternoon: Group project work; Evening: Gym\", \"Wednesday\": \"Morning: Classes; Afternoon: Independent study; Evening: Social time\", \"Thursday\": \"Morning: Classes; Afternoon: Lab work; Evening: Reading\", \"Friday\": \"Morning: Classes; Afternoon: Review sessions; Evening: Movie night\"}}</action>",
+    "json_str": "{\"schedule\": {\"Monday\": \"Morning: Classes; Afternoon: Library study; Evening: Leisure activities\", \"Tuesday\": \"Morning: Classes; Afternoon: Group project work; Evening: Gym\", \"Wednesday\": \"Morning: Classes; Afternoon: Independent study; Evening: Social time\", \"Thursday\": \"Morning: Classes; Afternoon: Lab work; Evening: Reading\", \"Friday\": \"Morning: Classes; Afternoon: Review sessions; Evening: Movie night\"}}"
+  },
+  {
+    "user_prompt": "Generate three innovative business ideas for the tech industry.",
+    "system_prompt": "Explain your creative process then output as:\n<think>Focus on emerging technologies and market needs</think><action>{\"ideas\": [\"(string)\", \"(string)\", \"(string)\"]}</action>",
+    "completion": "<think>I brainstormed ideas that integrate AI, blockchain, and AR to address current market gaps.</think><action>{\"ideas\": [\"AI-driven personal health assistant\", \"Blockchain-based supply chain tracker\", \"Augmented reality retail experience platform\"]}</action>",
+    "json_str": "{\"ideas\": [\"AI-driven personal health assistant\", \"Blockchain-based supply chain tracker\", \"Augmented reality retail experience platform\"]}"
+  },
+  {
+    "user_prompt": "Translate a technical paragraph from Spanish to English about renewable energy.",
+    "system_prompt": "Explain your translation then output as:\n<think>Focus on technical vocabulary</think><action>{\"original\": \"(string)\", \"translated\": \"(string)\"}</action>",
+    "completion": "<think>I ensured that key technical terms were accurately conveyed.</think><action>{\"original\": \"La energ\u00eda renovable es esencial para un futuro sostenible.\", \"translated\": \"Renewable energy is essential for a sustainable future.\"}</action>",
+    "json_str": "{\"original\": \"La energ\u00eda renovable es esencial para un futuro sostenible.\", \"translated\": \"Renewable energy is essential for a sustainable future.\"}"
+  },
+  {
+    "user_prompt": "Calculate the final score of a football game given scores from four quarters: Q1: 7, Q2: 3, Q3: 10, Q4: 14.",
+    "system_prompt": "Explain your calculation then output as:\n<think>Add all quarter scores</think><action>{\"quarter_scores\": {\"Q1\": 7, \"Q2\": 3, \"Q3\": 10, \"Q4\": 14}, \"final_score\": (int)}</action>",
+    "completion": "<think>I summed the scores from each quarter to determine the final score.</think><action>{\"quarter_scores\": {\"Q1\": 7, \"Q2\": 3, \"Q3\": 10, \"Q4\": 14}, \"final_score\": 34}</action>",
+    "json_str": "{\"quarter_scores\": {\"Q1\": 7, \"Q2\": 3, \"Q3\": 10, \"Q4\": 14}, \"final_score\": 34}"
+  },
+  {
+    "user_prompt": "Outline a safe social distancing plan for a public event.",
+    "system_prompt": "Explain your safety measures then output as:\n<think>Incorporate distancing, masks, and sanitization</think><action>{\"event_plan\": {\"measure1\": \"(string)\", \"measure2\": \"(string)\", \"measure3\": \"(string)\"}}</action>",
+    "completion": "<think>I prioritized clear safety protocols to minimize risk.</think><action>{\"event_plan\": {\"measure1\": \"Enforce 6-foot distancing\", \"measure2\": \"Mandatory mask wearing\", \"measure3\": \"Provide hand sanitizing stations\"}}</action>",
+    "json_str": "{\"event_plan\": {\"measure1\": \"Enforce 6-foot distancing\", \"measure2\": \"Mandatory mask wearing\", \"measure3\": \"Provide hand sanitizing stations\"}}"
+  },
+  {
+    "user_prompt": "List four recommended books for budding entrepreneurs.",
+    "system_prompt": "Explain your selection then output as:\n<think>Focus on business strategy and inspiration</think><action>{\"books\": [\"(string)\", \"(string)\", \"(string)\", \"(string)\"]}</action>",
+    "completion": "<think>I selected titles that offer insights into innovation and effective business strategies.</think><action>{\"books\": [\"The Lean Startup\", \"Zero to One\", \"Good to Great\", \"Start with Why\"]}</action>",
+    "json_str": "{\"books\": [\"The Lean Startup\", \"Zero to One\", \"Good to Great\", \"Start with Why\"]}"
+  },
+  {
+    "user_prompt": "Summarize the plot of 'Cinderella' in two sentences.",
+    "system_prompt": "Explain your summarization then output as:\n<think>Focus on key plot points</think><action>{\"summary\": \"(string)\"}</action>",
+    "completion": "<think>I distilled the fairy tale into its essential narrative arc.</think><action>{\"summary\": \"Cinderella overcomes her mistreatment at home with the help of magic, attends a royal ball, and wins the heart of the prince. Her true identity is revealed, leading to a happily ever after.\"}</action>",
+    "json_str": "{\"summary\": \"Cinderella overcomes her mistreatment at home with the help of magic, attends a royal ball, and wins the heart of the prince. Her true identity is revealed, leading to a happily ever after.\"}"
+  },
+  {
+    "user_prompt": "Describe an ideal weekend getaway destination and justify your choice.",
+    "system_prompt": "Explain your reasoning then output as:\n<think>Consider relaxation, scenery, and activities</think><action>{\"destination\": \"(string)\", \"justification\": \"(string)\"}</action>",
+    "completion": "<think>I selected a destination that offers natural beauty and a peaceful atmosphere.</think><action>{\"destination\": \"Bali\", \"justification\": \"Bali offers stunning beaches, a rich cultural experience, and plenty of opportunities for relaxation and adventure.\"}</action>",
+    "json_str": "{\"destination\": \"Bali\", \"justification\": \"Bali offers stunning beaches, a rich cultural experience, and plenty of opportunities for relaxation and adventure.\"}"
+  },
+  {
+    "user_prompt": "Convert a temperature of 95\u00b0F to Celsius.",
+    "system_prompt": "Explain your conversion then output as:\n<think>Use the formula (F - 32) * 5/9</think><action>{\"fahrenheit\": 95, \"celsius\": (float)}</action>",
+    "completion": "<think>I applied the standard conversion formula to determine the Celsius temperature.</think><action>{\"fahrenheit\": 95, \"celsius\": 35.0}</action>",
+    "json_str": "{\"fahrenheit\": 95, \"celsius\": 35.0}"
+  },
+  {
+    "user_prompt": "Assess whether the following scenario presents a conflict of interest: a board member awarding a contract to their own company.",
+    "system_prompt": "Explain your reasoning then output as:\n<think>Evaluate the ethical implications</think><action>{\"scenario\": \"(string)\", \"conflict_of_interest\": (bool), \"explanation\": \"(string)\"}</action>",
+    "completion": "<think>I considered the potential for biased decision-making and self-dealing.</think><action>{\"scenario\": \"A board member awards a contract to their own company.\", \"conflict_of_interest\": true, \"explanation\": \"This scenario represents a conflict of interest because it compromises impartiality in decision-making.\"}</action>",
+    "json_str": "{\"scenario\": \"A board member awards a contract to their own company.\", \"conflict_of_interest\": true, \"explanation\": \"This scenario represents a conflict of interest because it compromises impartiality in decision-making.\"}"
+  },
+  {
+    "user_prompt": "Write a SQL query to select all records from a table named 'Employees' where the department is 'Sales'.",
+    "system_prompt": "Explain your query then output as:\n<think>Construct the query with a WHERE clause</think><action>{\"sql_query\": \"(string)\"}</action>",
+    "completion": "<think>I formulated a query to filter records by the specified department.</think><action>{\"sql_query\": \"SELECT * FROM Employees WHERE department = 'Sales';\"}</action>",
+    "json_str": "{\"sql_query\": \"SELECT * FROM Employees WHERE department = 'Sales';\"}"
+  },
+  {
+    "user_prompt": "Describe the interface design for a fictional meditation app.",
+    "system_prompt": "Explain your design then output as:\n<think>Focus on calm colors and intuitive layout</think><action>{\"app_interface\": \"(string)\"}</action>",
+    "completion": "<think>I envisioned a minimalist design with soothing colors to promote relaxation.</think><action>{\"app_interface\": \"A clean, uncluttered interface with soft blues and greens, large meditation timer, and calming nature imagery.\"}</action>",
+    "json_str": "{\"app_interface\": \"A clean, uncluttered interface with soft blues and greens, large meditation timer, and calming nature imagery.\"}"
+  },
+  {
+    "user_prompt": "Craft an inspirational tweet with appropriate hashtags.",
+    "system_prompt": "Explain your creative process then output as:\n<think>Combine motivational words with trending hashtags</think><action>{\"tweet\": \"(string)\"}</action>",
+    "completion": "<think>I blended a concise motivational message with relevant hashtags to boost engagement.</think><action>{\"tweet\": \"Believe in your journey and embrace every challenge! #Motivation #Inspiration #DreamBig\"}</action>",
+    "json_str": "{\"tweet\": \"Believe in your journey and embrace every challenge! #Motivation #Inspiration #DreamBig\"}"
+  }
+]

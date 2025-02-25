@@ -15,8 +15,7 @@ def create_app(env):
     async def get_env_response(request: Request):
         data = await request.json()
         response = env.get_env_response_batched(
-            messages_b=data.get("messages_b"),
-            hidden_params_b=data.get("hidden_params_b"),
+            messages_batched=data.get("messages_batched"),
         )
         return JSONResponse(response)
 
@@ -24,8 +23,7 @@ def create_app(env):
     async def get_reward(request: Request):
         data = await request.json()
         reward = env.get_reward_batched(
-            messages_b=data.get("messages_b"),
-            hidden_params_b=data.get("hidden_params_b"),
+            messages_batched=data.get("messages_batched"),
         )
         return JSONResponse(reward)
 

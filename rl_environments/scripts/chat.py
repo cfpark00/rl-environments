@@ -2,14 +2,13 @@ import argparse
 import requests
 
 
-def compute_reward(url, messages, hidden_params):
+def compute_reward(url, messages):
     """
     Compute the reward for the entire conversation by sending
-    the messages and hidden parameters to the reward endpoint.
+    the messages and env parameters to the reward endpoint.
     """
     payload = {
-        "messages_b": [messages],
-        "hidden_params_b": [hidden_params],
+        "messages_batched": [messages],
     }
     try:
         response = requests.post(f"{url}/get_reward_batched", json=payload)
@@ -42,11 +41,11 @@ def reset(url):
     data = requests.post(f"{url}/get_data_sample", json={}).json()
     print("=====================================")
     print("Resetting the conversation.")
-    messages, hidden_params = data["messages"], data["hidden_params"]
+    messages= data["messages"]
     print("=====================================")
     print("Conversation:")
     print_message(messages)
-    return messages, hidden_params
+    return messages
 
 
 if __name__ == "__main__":
@@ -65,32 +64,27 @@ if __name__ == "__main__":
     print("You are the assistant. Special functions:")
     print("Type 'exit' or 'quit' to stop.")
     print("Type 'reward' to compute the reward from the entire conversation.")
-    print("Type 'hidden' to print the hidden parameters.")
+    print("Type 'env_params' to print the env parameters.")
     print("Type 'reset' to reset the conversation.")
-    # Retrieve the initial sample messages and hidden parameters.
-    data = requests.post(f"{url}/get_data_sample", json={}).json()
-    messages, hidden_params = data["messages"], data["hidden_params"]
-
-    print("=====================================")
-    print("Conversation:")
-    print_message(messages)
+    # Retrieve the initial sample messages and env parameters.
+    messages = reset(url)
 
     while True:
         # The human is the assistant.
         assistant_input = input("Assistant: ").strip()
         lowercased_input = assistant_input.lower()
-        if lowercased_input in ["exit", "quit", "reward", "hidden", "reset"]:
+        if lowercased_input in ["exit", "quit", "reward", "env_params", "reset"]:
             if lowercased_input in ["exit", "quit"]:
                 print("Exiting the chat. Goodbye!")
                 break
             elif lowercased_input == "reward":
-                compute_reward(url, messages, hidden_params)
+                compute_reward(url, messages, env_params)
                 continue
-            elif lowercased_input == "hidden":  # print hidden params
-                print("Hidden Params:", hidden_params)
+            elif lowercased_input == "env_params":  # print env params
+                print("Env Params:", messages[0]["env_params"])
                 continue
             elif lowercased_input == "reset":
-                messages, hidden_params= reset(url)
+                messages = reset(url)
                 continue
 
         # Append the assistant's message.
@@ -98,8 +92,7 @@ if __name__ == "__main__":
 
         # Build the payload for getting the user's response from the environment.
         payload = {
-            "messages_b": [messages],
-            "hidden_params_b": [hidden_params],
+            "messages_batched": [messages],
         }
 
         try:
@@ -113,8 +106,8 @@ if __name__ == "__main__":
                 if user_response.get("done", False):
                     print("Conversation is done. Final reward:")
                     print("=====================================")
-                    compute_reward(url, messages, hidden_params)
-                    messages, hidden_params = reset(url)
+                    compute_reward(url, messages)
+                    messages = reset(url)
             else:
                 print(
                     f"Server returned an error {response.status_code}: {response.text}"

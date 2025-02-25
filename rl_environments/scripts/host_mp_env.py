@@ -12,6 +12,12 @@ from rl_environments.envs.examples_envs import ExampleEnv
 from rl_environments.envs.banditboxes_env import BanditBoxesEnv
 from rl_environments.envs.singlebanditboxes_env import SingleBanditBoxesEnv
 from rl_environments.envs.guessnumber_env import GuessNumberEnv
+from rl_environments.envs.guessnumberhotcold_env import GuessNumberHotColdEnv
+from rl_environments.envs.tictactoerandom_env import TicTacToeRandomEnv
+from rl_environments.envs.thinkactionjson_env import ThinkActionJsonEnv
+from rl_environments.envs.maze_env import MazeEnv
+from rl_environments.envs.ruledbanditboxes_env import RuledBanditBoxesEnv
+
 
 env_classes={
     "example": ExampleEnv,
@@ -20,6 +26,15 @@ env_classes={
     "singlebanditboxes": SingleBanditBoxesEnv,
     #guess number
     "guessnumber": GuessNumberEnv,
+    "guessnumberhotcold": GuessNumberHotColdEnv,
+    #tictactoe
+    "tictactoerandom": TicTacToeRandomEnv,
+    #thinkactionjson
+    "thinkactionjson": ThinkActionJsonEnv,
+    #maze
+    "maze": MazeEnv,
+    #ruledbanditboxes
+    "ruledbanditboxes": RuledBanditBoxesEnv
 }
 
 parser = argparse.ArgumentParser(description="Host an environment")

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rl-environments"
+version = "0.1.0"
+description = "Environments for RL"
+authors = [
+  { name = "Core Francisco Park", email = "cfpark00@gmail.com" }
+]
+dependencies = [
+  # add any runtime dependencies here
+]
+# optional
+readme = "README.md"
+license = { file = "LICENSE" }
+
+[tool.setuptools.packages.find]
+# Tells setuptools to look in the current directory (".")
+# but only include the rl_environments package.
+where = ["."]
+include = ["rl_environments"]
+# Exclude other directories that you don't want treated as packages.
+exclude = ["assets", "examples", "tests", "scripts"]

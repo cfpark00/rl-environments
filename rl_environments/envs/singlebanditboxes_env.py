@@ -49,12 +49,12 @@ class SingleBanditBoxesEnv(BaseEnv):
     def get_data_sample(self):
         p_binoms = self.params["p_binoms"]
         n_boxes = len(p_binoms)
+        env_params = {"p_binoms": p_binoms.tolist() if isinstance(p_binoms, np.ndarray) else p_binoms}
         messages = [
-            {"role": "system", "content": self.system_prompt},
+            {"role": "system", "content": self.system_prompt, "env_params": env_params},
             {"role": "user", "content": self.make_task_message(n_boxes), "done": False},
         ]
-        hidden_params = {"p_binoms": p_binoms.tolist() if isinstance(p_binoms, np.ndarray) else p_binoms}
-        data = {"messages": messages, "hidden_params": hidden_params}
+        data = {"messages": messages}
         return data
 
     @staticmethod
@@ -62,14 +62,15 @@ class SingleBanditBoxesEnv(BaseEnv):
         return " vs. ".join([f"Box {i}" for i in range(1, n_boxes + 1)]) + "?"
 
     @staticmethod
-    def get_env_response(messages, hidden_params):
+    def get_env_response(messages):
         """
         Processes the assistant's response message:
           - Uses Pydantic to validate the output JSON against the ResponseFormat model.
           - If validation fails, returns a message with the format error prompt.
           - Otherwise, computes the reward (if a valid box was chosen) and issues the next task.
         """
-        p_binoms = hidden_params["p_binoms"]
+        env_params = messages[0]["env_params"]
+        p_binoms = env_params["p_binoms"]
 
         last_assistant_message = utils.get_last_assistant_message(messages)
         last_content = last_assistant_message["content"]
@@ -102,7 +103,8 @@ class SingleBanditBoxesEnv(BaseEnv):
         return response_message
 
     @staticmethod
-    def get_reward(messages, hidden_params):
+    def get_reward(messages):
+        env_params = messages[0]["env_params"]
         reward = 0.0
         for message in messages:
             if message["role"] == "user":

@@ -9,20 +9,19 @@ class BaseEnv(abc.ABC):
     def get_dataset(self, n_rows, **kwargs):
         raise NotImplementedError
 
-    def get_env_response_batched(self, messages_b, hidden_params_b):
+    def get_env_response_batched(self, messages_batched):
         env_response_b = []
-        batch_size = len(messages_b)
+        batch_size = len(messages_batched)
         for i in range(batch_size):
             if self.logger is not None:
                 self.logger.info(
                     "\tProcessing messages [%d/%d]: %s",
                     i + 1,
                     batch_size,
-                    messages_b[i],
+                    messages_batched[i],
                 )
-                self.logger.info("\tusing hidden params: %s", hidden_params_b[i])
             env_response_message = self.get_env_response(
-                messages_b[i], hidden_params_b[i]
+                messages_batched[i]
             )
             if self.logger is not None:
                 self.logger.info(
@@ -34,19 +33,18 @@ class BaseEnv(abc.ABC):
             env_response_b.append(env_response_message)
         return env_response_b
 
-    def get_reward_batched(self, messages_b, hidden_params_b):
+    def get_reward_batched(self, messages_batched):
         reward_b = []
-        batch_size = len(messages_b)
+        batch_size = len(messages_batched)
         for i in range(batch_size):
             if self.logger is not None:
                 self.logger.info(
                     "\tProcessing messages [%d/%d]: %s",
                     i + 1,
                     batch_size,
-                    messages_b[i],
+                    messages_batched[i],
                 )
-                self.logger.info("\tusing hidden params: %s", hidden_params_b[i])
-            reward = self.get_reward(messages_b[i], hidden_params_b[i])
+            reward = self.get_reward(messages_batched[i])
             if self.logger is not None:
                 self.logger.info(
                     "\tProduced reward [%d/%d]: %s", i + 1, batch_size, reward
@@ -55,11 +53,11 @@ class BaseEnv(abc.ABC):
         return reward_b
 
     @abc.abstractmethod
-    def get_env_response(self, messages, hiddens_params):
+    def get_env_response(self, messages):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_reward(self, messages, hidden_params):
+    def get_reward(self, messages):
         raise NotImplementedError
 
     def host(self, host, port, workers=1):
@@ -81,8 +79,7 @@ class BaseEnv(abc.ABC):
         async def get_env_response(request: Request):
             data = await request.json()
             response = self.get_env_response_batched(
-                messages_b=data.get("messages_b"),
-                hidden_params_b=data.get("hidden_params_b"),
+                messages_batched=data.get("messages_batched"),
             )
             return JSONResponse(response)
 
@@ -90,8 +87,7 @@ class BaseEnv(abc.ABC):
         async def get_reward(request: Request):
             data = await request.json()
             reward = self.get_reward_batched(
-                messages_b=data.get("messages_b"),
-                hidden_params_b=data.get("hidden_params_b"),
+                messages_batched=data.get("messages_batched"),
             )
             return JSONResponse(reward)
 
