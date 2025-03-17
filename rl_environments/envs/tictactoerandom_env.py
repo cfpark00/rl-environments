@@ -6,8 +6,9 @@ import json
 import numpy as np
 import re  # for regex parsing
 
+
 def board_to_string(board):
-    return "\n".join("".join(row) for row in board)
+    return " \n".join([(" "+" ".join(row)) for row in board])
 
 def string_to_board(board_str):
     rows = board_str.strip().split("\n")
@@ -51,7 +52,7 @@ class TicTacToeRandomEnv(BaseEnv):
         "The user will tell you what marker you are playing and who starts.\n"
         "Respond in the following format:\n"
         "<think>Your thought process here (can be any reasoning you want)</think>"
-        "<action>{{\"board_state\": \"current board layout with rows separated by newline, e.g. 'X--\\n-O-\\n--X'\"}}</action>"
+        "<action>{{\"board_state\": \"current board layout with rows separated by newline, e.g. ' X - - \\n - O - \\n - - X'\"}}</action>"
     )
     format_error_prompt = (
         "Format Error. Please respond in the following format:\n"
